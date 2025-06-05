@@ -1,0 +1,114 @@
+/* Theme System */
+.theme-light {
+  color-scheme: light;
+}
+
+.theme-dark {
+  color-scheme: dark;
+}
+
+/* Theme Toggle Animation */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle-btn i {
+  transition: transform var(--transition-normal);
+}
+
+.theme-dark .theme-toggle-btn i.fa-moon {
+  transform: rotate(180deg) scale(0);
+}
+
+.theme-dark .theme-toggle-btn i.fa-sun {
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-light .theme-toggle-btn i.fa-sun {
+  transform: rotate(-180deg) scale(0);
+}
+
+.theme-light .theme-toggle-btn i.fa-moon {
+  transform: rotate(0deg) scale(1);
+}
+
+/* Avatar Color Variations */
+.avatar-fallback.em {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+.avatar-fallback.mj {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.avatar-fallback.sl {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+}
+.avatar-fallback.rb {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.avatar-fallback.aw {
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+.avatar-fallback.dm {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* Custom Properties for Dynamic Theming */
+.theme-custom {
+  --primary-color: var(--custom-primary, #6366f1);
+  --primary-hover: var(--custom-primary-hover, #5855eb);
+  --primary-light: var(--custom-primary-light, #e0e7ff);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-secondary: #000000;
+    --background-tertiary: #ffffff;
+  }
+
+  .theme-dark {
+    --border-color: #ffffff;
+    --text-secondary: #ffffff;
+    --background-tertiary: #000000;
+  }
+
+  .message-content {
+    border: 2px solid var(--border-color);
+  }
+
+  .btn,
+  .icon-btn {
+    border: 2px solid var(--border-color);
+  }
+}
+
+/* Focus Styles for Better Accessibility */
+.focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* System Theme Detection */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    --primary-color: #818cf8;
+    --primary-hover: #6366f1;
+    --primary-light: #312e81;
+    --primary-dark: #a5b4fc;
+
+    --background-primary: #0f172a;
+    --background-secondary: #1e293b;
+    --background-tertiary: #334155;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-inverse: #0f172a;
+
+    --border-color: #334155;
+    --border-light: #475569;
+    --border-dark: #64748b;
+  }
+}

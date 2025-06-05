@@ -1,0 +1,246 @@
+/* Mobile First Responsive Design */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+  .navbar-content {
+    padding: 0 var(--space-4);
+  }
+
+  .navbar-center {
+    display: none;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    height: calc(100vh - var(--navbar-height));
+    z-index: var(--z-fixed);
+    transform: translateX(-100%);
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+
+  .chat-header {
+    padding: var(--space-4);
+  }
+
+  .chat-messages {
+    padding: var(--space-4);
+  }
+
+  .chat-input-area {
+    padding: var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .input-actions-left {
+    display: none;
+  }
+
+  .message-content {
+    max-width: 85%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .footer-links {
+    gap: var(--space-4);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar-center {
+    max-width: 300px;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    height: calc(100vh - var(--navbar-height));
+    z-index: var(--z-fixed);
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .right-sidebar {
+    display: none;
+  }
+
+  .message-content {
+    max-width: 80%;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .right-sidebar {
+    display: none;
+  }
+
+  .sidebar-toggle-btn {
+    display: none;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 992px) {
+  .sidebar-toggle-btn {
+    display: none;
+  }
+}
+
+/* Ultra wide screens */
+@media (min-width: 1600px) {
+  .navbar-content,
+  .footer-content {
+    max-width: 1800px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .navbar {
+    height: 50px;
+  }
+
+  .main-content {
+    margin-top: 50px;
+  }
+
+  .sidebar {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
+  .chat-header {
+    padding: var(--space-3) var(--space-6);
+  }
+
+  .profile-section {
+    padding: var(--space-4);
+  }
+
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo-icon,
+  .avatar,
+  .file-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .sidebar,
+  .right-sidebar,
+  .footer,
+  .chat-input-area {
+    display: none !important;
+  }
+
+  .chat-area {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .chat-messages {
+    padding: 0 !important;
+  }
+
+  .message {
+    break-inside: avoid;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .message-content {
+    border: 1px solid #ccc !important;
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+
+  .message {
+    animation: none;
+  }
+
+  .typing-dots span {
+    animation: none;
+  }
+}
+
+/* Dark mode specific responsive adjustments */
+@media (prefers-color-scheme: dark) {
+  .navbar,
+  .sidebar,
+  .chat-area,
+  .right-sidebar,
+  .footer {
+    border-color: var(--border-color);
+  }
+
+  .search-input {
+    background: var(--background-tertiary);
+  }
+
+  .message.received .message-content {
+    background: var(--background-tertiary);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .icon-btn,
+  .action-btn,
+  .input-action-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .chat-item {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .dropdown-item {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .tooltip::before {
+    display: none;
+  }
+}

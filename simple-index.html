@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat Application</title>
+    
+    <!-- Use the existing style.css that was manually added -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Fixed Top Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">ChatPro</div>
+            <div class="user-avatar">CL</div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Messages</h2>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="chat-list" id="chatList">
+                <div class="chat-item active" data-chat="emma">
+                    <div class="chat-avatar em">EM</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Emma Thompson</div>
+                        <div class="chat-preview">I've sent you the latest project files.</div>
+                    </div>
+                    <div class="chat-time">2:30 PM</div>
+                    <div class="online-indicator"></div>
+                </div>
+                
+                <div class="chat-item" data-chat="michael">
+                    <div class="chat-avatar mj">MJ</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Michael Johnson</div>
+                        <div class="chat-preview">Are we still meeting for coffee tomorrow?</div>
+                    </div>
+                    <div class="chat-time">Yesterday</div>
+                </div>
+                
+                <div class="chat-item" data-chat="sophia">
+                    <div class="chat-avatar sl">SL</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Sophia Lee</div>
+                        <div class="chat-preview">The design team loved your presentation!</div>
+                    </div>
+                    <div class="chat-time">Yesterday</div>
+                </div>
+                
+                <div class="chat-item" data-chat="robert">
+                    <div class="chat-avatar rb">RB</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Robert Brown</div>
+                        <div class="chat-preview">Can you review the budget proposal?</div>
+                    </div>
+                    <div class="chat-time">Tuesday</div>
+                </div>
+                
+                <div class="chat-item" data-chat="amelia">
+                    <div class="chat-avatar aw">AW</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Amelia Wilson</div>
+                        <div class="chat-preview">Thanks for your help with the client presentation!</div>
+                    </div>
+                    <div class="chat-time">Monday</div>
+                </div>
+                
+                <div class="chat-item" data-chat="daniel">
+                    <div class="chat-avatar dm">DM</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Daniel Martinez</div>
+                        <div class="chat-preview">Let's schedule a call to discuss the requirements.</div>
+                    </div>
+                    <div class="chat-time">May 25</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <section class="chat-area">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar em">EM</div>
+                    <div class="chat-details">
+                        <h3>Emma Thompson</h3>
+                        <p class="status online">Online</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                    <div class="message-content">Sounds great! I've heard good things about their pasta. Looking forward to it.</div>
+                    <div class="message-time">12:00 PM</div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-content">Oh, I almost forgot - do you have the latest version of the client presentation? I want to make sure we're all on the same page for tomorrow.</div>
+                    <div class="message-time">12:05 PM</div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-content">I've just sent it to your email. It includes all the updates we discussed in the last meeting. Let me know if you need anything else!</div>
+                    <div class="message-time">12:15 PM</div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-content">Got it, thanks! I'll review it before our lunch. See you soon!</div>
+                    <div class="message-time">12:20 PM</div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-content">Looking forward to it! 👍</div>
+                    <div class="message-time">12:25 PM</div>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">Emma is typing...</span>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <textarea id="messageInput" placeholder="Type your message..." rows="1"></textarea>
+                    <button class="send-button" id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="profile-section">
+                <div class="profile-avatar em">EM</div>
+                <h3>Emma Thompson</h3>
+                <p class="profile-status">Online</p>
+            </div>
+            
+            <div class="profile-details">
+                <div class="detail-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>emma.thompson@company.com</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>San Francisco, CA</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 ChatPro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript for basic functionality -->
+    <script>
+        class SimpleChatApp {
+            constructor() {
+                this.currentChat = 'emma';
+                this.isTyping = false;
+                this.botResponses = [
+                    "That sounds great! I'm looking forward to it.",
+                    "Thanks for sharing that with me.",
+                    "I completely agree with your point.",
+                    "Let me think about that for a moment...",
+                    "That's a really interesting perspective!",
+                    "I'll get back to you on that shortly.",
+                    "Perfect! That works for me.",
+                    "I appreciate you letting me know.",
+                    "That makes a lot of sense.",
+                    "I'm excited to see how this turns out!"
+                ];
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.autoResizeTextarea();
+                this.scrollToBottom();
+            }
+            
+            bindEvents() {
+                // Send button click
+                document.getElementById('sendButton').addEventListener('click', () => {
+                    this.sendMessage();
+                });
+
+                // Enter key to send message
+                document.getElementById('messageInput').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                // Auto-resize textarea
+                document.getElementById('messageInput').addEventListener('input', () => {
+                    this.autoResizeTextarea();
+                });
+
+                // Sidebar toggle for mobile
+                document.getElementById('sidebarToggle').addEventListener('click', () => {
+                    this.toggleSidebar();
+                });
+
+                // Chat item selection
+                document.querySelectorAll('.chat-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        this.selectChat(item.dataset.chat);
+                    });
+                });
+
+                // Close sidebar when clicking outside on mobile
+                document.addEventListener('click', (e) => {
+                    const sidebar = document.getElementById('sidebar');
+                    const sidebarToggle = document.getElementById('sidebarToggle');
+                    
+                    if (window.innerWidth <= 768 && 
+                        !sidebar.contains(e.target) && 
+                        !sidebarToggle.contains(e.target) &&
+                        sidebar.classList.contains('open')) {
+                        this.closeSidebar();
+                    }
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        this.closeSidebar();
+                    }
+                });
+            }
+            
+            sendMessage() {
+                const input = document.getElementById('messageInput');
+                const message = input.value.trim();
+                
+                if (!message) return;
+
+                // Add user message
+                this.addMessage(message, 'sent');
+                
+                // Clear input
+                input.value = '';
+                this.autoResizeTextarea();
+                
+                // Scroll to bottom
+                this.scrollToBottom();
+                
+                // Show typing indicator and simulate bot response
+                this.showTypingIndicator();
+                
+                // Simulate bot response delay
+                setTimeout(() => {
+                    this.hideTypingIndicator();
+                    this.addBotResponse();
+                }, 1000 + Math.random() * 2000);
+            }
+            
+            addMessage(content, type) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                messageDiv.innerHTML = `
+                    <div class="message-content">${this.escapeHtml(content)}</div>
+                    <div class="message-time">${timeString}</div>
+                `;
+                
+                messagesContainer.appendChild(messageDiv);
+                this.scrollToBottom();
+                
+                // Update chat preview in sidebar
+                this.updateChatPreview(content, type);
+            }
+            
+            addBotResponse() {
+                const randomResponse = this.botResponses[Math.floor(Math.random() * this.botResponses.length)];
+                this.addMessage(randomResponse, 'received');
+            }
+            
+            showTypingIndicator() {
+                const indicator = document.getElementById('typingIndicator');
+                indicator.classList.add('show');
+                this.isTyping = true;
+                this.scrollToBottom();
+            }
+            
+            hideTypingIndicator() {
+                const indicator = document.getElementById('typingIndicator');
+                indicator.classList.remove('show');
+                this.isTyping = false;
+            }
+            
+            scrollToBottom() {
+                const messagesContainer = document.getElementById('chatMessages');
+                setTimeout(() => {
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 100);
+            }
+            
+            autoResizeTextarea() {
+                const textarea = document.getElementById('messageInput');
+                textarea.style.height = 'auto';
+                textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+            }
+            
+            toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('open');
+            }
+            
+            closeSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.remove('open');
+            }
+            
+            selectChat(chatId) {
+                // Remove active class from all chat items
+                document.querySelectorAll('.chat-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to selected chat
+                document.querySelector(`[data-chat="${chatId}"]`).classList.add('active');
+                
+                // Update current chat
+                this.currentChat = chatId;
+                
+                // Close sidebar on mobile
+                if (window.innerWidth <= 768) {
+                    this.closeSidebar();
+                }
+            }
+            
+            updateChatPreview(content, type) {
+                const activeChat = document.querySelector('.chat-item.active');
+                if (activeChat) {
+                    const preview = activeChat.querySelector('.chat-preview');
+                    const time = activeChat.querySelector('.chat-time');
+                    
+                    // Update preview text
+                    const previewText = type === 'sent' ? `You: ${content}` : content;
+                    preview.textContent = previewText.length > 30 ? 
+                        previewText.substring(0, 30) + '...' : previewText;
+                    
+                    // Update time
+                    const now = new Date();
+                    time.textContent = now.toLocaleTimeString([], { 
+                        hour: '2-digit', 
+                        minute: '2-digit' 
+                    });
+                }
+            }
+            
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // Initialize the chat app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatApp = new SimpleChatApp();
+            console.log('Simple Chat App initialized successfully!');
+            
+            // Focus on message input
+            document.getElementById('messageInput').focus();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatPro - Professional Chat Application</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading Chat...</p>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="app-container" id="appContainer">
+        <!-- Header Navigation -->
+        <header class="header">
+            <div class="header-content">
+                <!-- Logo Section -->
+                <div class="logo-section">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <span class="logo-text">ChatPro</span>
+                    </div>
+                </div>
+
+                <!-- Search Section -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search conversations..." class="search-input" id="searchInput">
+                    </div>
+                </div>
+
+                <!-- User Section -->
+                <div class="user-section">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <div class="notifications" id="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+
+                    <div class="user-profile" id="userProfile">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=40&width=40" alt="User Avatar" id="userAvatarImg">
+                            <div class="avatar-fallback">CL</div>
+                            <div class="online-status"></div>
+                        </div>
+                        
+                        <!-- Profile Dropdown -->
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <div class="user-info">
+                                    <div class="user-name">Chris Lee</div>
+                                    <div class="user-email">chris.lee@company.com</div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-menu">
+                                <button class="dropdown-item" id="uploadProfilePic">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Set Profile Picture</span>
+                                </button>
+                                <button class="dropdown-item" id="profileSettings">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </button>
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item sign-out" id="signOut">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sign Out</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-container">
+            <!-- Left Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>Messages</h2>
+                    <button class="new-chat-btn" id="newChatBtn" title="New chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="unread">Unread</button>
+                    <button class="filter-tab" data-filter="archived">Archived</button>
+                </div>
+
+                <!-- Chat List -->
+                <div class="chat-list" id="chatList">
+                    <div class="chat-item active" data-chat="emma">
+                        <div class="chat-avatar">
+                            <img src="/placeholder.svg?height=48&width=48" alt="Emma Thompson">
+                            <div class="avatar-fallback em">EM</div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="chat-content">
+                            <div class="chat-header">
+                                <h3 class="chat-name">Emma Thompson</h3>
+                                <span class="chat-time">2:30 PM</span>
+                            </div>
+                            <div class="chat-preview">I've sent you the latest project files.</div>
+                        </div>
+                        <div class="unread-badge">2</div>
+                    </div>
+
+                    <div class="chat-item" data-chat="michael">
+                        <div class="chat-avatar">
+                            <img src="/placeholder.svg?height=48&width=48" alt="Michael Johnson">
+                            <div class="avatar-fallback mj">MJ</div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="chat-content">
+                            <div class="chat-header">
+                                <h3 class="chat-name">Michael Johnson</h3>
+                                <span class="chat-time">Yesterday</span>
+                            </div>
+                            <div class="chat-preview">Are we still meeting for coffee tomorrow?</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" data-chat="sophia">
+                        <div class="chat-avatar">
+                            <img src="/placeholder.svg?height=48&width=48" alt="Sophia Lee">
+                            <div class="avatar-fallback sl">SL</div>
+                            <div class="away-indicator"></div>
+                        </div>
+                        <div class="chat-content">
+                            <div class="chat-header">
+                                <h3 class="chat-name">Sophia Lee</h3>
+                                <span class="chat-time">Yesterday</span>
+                            </div>
+                            <div class="chat-preview">The design team loved your presentation!</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" data-chat="robert">
+                        <div class="chat-avatar">
+                            <img src="/placeholder.svg?height=48&width=48" alt="Robert Brown">
+                            <div class="avatar-fallback rb">RB</div>
+                        </div>
+                        <div class="chat-content">
+                            <div class="chat-header">
+                                <h3 class="chat-name">Robert Brown</h3>
+                                <span class="chat-time">Tuesday</span>
+                            </div>
+                            <div class="chat-preview">Can you review the budget proposal?</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <section class="chat-area">
+                <!-- Chat Header -->
+                <div class="chat-header-bar">
+                    <div class="contact-info">
+                        <div class="contact-avatar">
+                            <img src="/placeholder.svg?height=44&width=44" alt="Emma Thompson">
+                            <div class="avatar-fallback em">EM</div>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <div class="contact-details">
+                            <h3 class="contact-name">Emma Thompson</h3>
+                            <p class="contact-status">
+                                <span class="status-dot online"></span>
+                                Online • Last seen 2 minutes ago
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-actions">
+                        <button class="action-btn" title="Voice call">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                        <button class="action-btn" title="Video call">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="action-btn" title="More options">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="messages-container" id="messagesContainer">
+                    <div class="message received">
+                        <div class="message-avatar">
+                            <img src="/placeholder.svg?height=32&width=32" alt="Emma">
+                            <div class="avatar-fallback em">EM</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Sounds great! I've heard good things about their pasta. Looking forward to it.
+                            </div>
+                            <div class="message-time">12:00 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message received">
+                        <div class="message-avatar">
+                            <img src="/placeholder.svg?height=32&width=32" alt="Emma">
+                            <div class="avatar-fallback em">EM</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Oh, I almost forgot - do you have the latest version of the client presentation? I want to make sure we're all on the same page for tomorrow.
+                            </div>
+                            <div class="message-time">12:05 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                I've just sent it to your email. It includes all the updates we discussed in the last meeting. Let me know if you need anything else!
+                            </div>
+                            <div class="message-time">12:15 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message received">
+                        <div class="message-avatar">
+                            <img src="/placeholder.svg?height=32&width=32" alt="Emma">
+                            <div class="avatar-fallback em">EM</div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Got it, thanks! I'll review it before our lunch. See you soon!
+                            </div>
+                            <div class="message-time">12:20 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Looking forward to it! 👍
+                            </div>
+                            <div class="message-time">12:25 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-avatar">
+                        <img src="/placeholder.svg?height=32&width=32" alt="Emma">
+                        <div class="avatar-fallback em">EM</div>
+                    </div>
+                    <div class="typing-content">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="typing-text">Emma is typing...</span>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="message-input-area">
+                    <div class="input-container">
+                        <button class="attachment-btn" id="attachmentBtn" title="Attach file">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        
+                        <div class="input-wrapper">
+                            <textarea 
+                                id="messageInput" 
+                                placeholder="Type your message..." 
+                                rows="1"
+                                maxlength="1000"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button class="emoji-btn" id="emojiBtn" title="Add emoji">
+                                    <i class="fas fa-smile"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="send-btn" id="sendBtn" title="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Sidebar -->
+            <aside class="right-sidebar" id="rightSidebar">
+                <div class="contact-profile">
+                    <div class="profile-avatar">
+                        <img src="/placeholder.svg?height=80&width=80" alt="Emma Thompson">
+                        <div class="avatar-fallback em">EM</div>
+                        <div class="online-indicator"></div>
+                    </div>
+                    <h3 class="profile-name">Emma Thompson</h3>
+                    <p class="profile-title">Product Manager</p>
+                    
+                    <div class="profile-actions">
+                        <button class="profile-action-btn" title="Call">
+                            <i class="fas fa-phone"></i>
+                        </button>
+                        <button class="profile-action-btn" title="Video call">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="profile-action-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="contact-sections">
+                    <div class="contact-section">
+                        <h4 class="section-title">Contact Information</h4>
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div class="item-content">
+                                    <span class="item-label">Email</span>
+                                    <span class="item-value">emma.thompson@company.com</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div class="item-content">
+                                    <span class="item-label">Phone</span>
+                                    <span class="item-value">+1 (555) 123-4567</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="item-content">
+                                    <span class="item-label">Location</span>
+                                    <span class="item-value">San Francisco, CA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-section">
+                        <h4 class="section-title">Shared Files</h4>
+                        <div class="shared-files">
+                            <div class="file-item">
+                                <div class="file-icon pdf">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="file-info">
+                                    <span class="file-name">Project_Proposal.pdf</span>
+                                    <span class="file-size">2.4 MB</span>
+                                </div>
+                            </div>
+                            <div class="file-item">
+                                <div class="file-icon image">
+                                    <i class="fas fa-file-image"></i>
+                                </div>
+                                <div class="file-info">
+                                    <span class="file-name">Design_Mockup.png</span>
+                                    <span class="file-size">1.8 MB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 ChatPro. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#support">Support</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden file input for profile picture upload -->
+    <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
