@@ -39,13 +39,6 @@ A fully responsive, modern, and interactive chat application built using HTML, C
   - Message status indicators (Sent, Delivered).
   - Smooth sidebar transitions and chat animations.
 
-## 🖼️ UI Preview
-
-> Include screenshots of:
-> - Desktop view
-> - Mobile view
-> - Font size control in action
-> - Multi-user chat layout
 
 ## 🛠️ Technologies Used
 
@@ -71,8 +64,8 @@ A fully responsive, modern, and interactive chat application built using HTML, C
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/chat-app.git
-   cd chat-app
+   git clone https://github.com/moniieekaa/responsive-chat-application.git
+   cd responsive-chat-application
 ````
 
 2. Open `index.html` in any modern browser.
