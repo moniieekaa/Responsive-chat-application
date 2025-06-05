@@ -74,9 +74,3 @@ A fully responsive, modern, and interactive chat application built using HTML, C
  
 ---
 
-## 📌 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-```
-
